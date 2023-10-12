@@ -114,8 +114,6 @@ resource "aws_instance" "bookapp_instance" {
   key_name      = aws_key_pair.key_pair.key_name
   security_groups = [aws_security_group.sg_ec2.name]
   
-  subnet_id     = "your_subnet_id_here"  # Replace with the ID of your desired subnet
-  
   tags = {
     Name = "bookapp_instance"
   }
@@ -137,8 +135,8 @@ sudo apt-get install -y nodejs
 sudo apt-get install -y npm
 sudo apt-get install -y git
 sudo npm install -g pm2
-sudo git clone "https://github.com/Ramyaasrii/Book_App-using-DynamoDB.git"
-cd "bookapp"
+sudo git clone "https://github.com/anushaareddy/Book_App-using_DynamoDB.git"
+cd "Book_App-using_DynamoDB"
 sudo tee .env > /dev/null << EOL
 PORT=3000
 AWS_ACCESS_KEY_ID=${var.aws_access_key}
