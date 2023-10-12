@@ -1,0 +1,44 @@
+<!-- Include the header section -->
+<%- include('include/_header') %>
+<!-- /Include header -->
+
+<!-- Main Site Content -->
+<main id="site-main">
+    <div class="container">
+        <!-- Navigation link to add a new book -->
+        <div class="box-nav d-flex justify-between">
+            <a href="/add-book" class="border-shadow">
+                <span class="text-gradient">New Book <i class="fas fa-book"></i></span>
+            </a>
+        </div>
+
+        <!-- Form for handling book data -->
+        <form action="/" method="POST">
+            <table class="table">
+                <!-- Table header for book information -->
+                <thead class="thead-dark">
+                    <tr>
+                        <th>SlNo.</th>
+                        <th>Book ID</th>
+                        <th>Book Name</th>
+                        <th>Author Name</th>
+                        <th>Book Price</th>
+                        <th>Published Date</th>
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Include the section to display book information -->
+                    <%- include('include/_show') %>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</main>
+<!-- /Main Site Content -->
+
+<!-- Include the footer section -->
+<%- include('include/_footer') %>
+<!-- /Include footer -->

@@ -1,0 +1,76 @@
+<!-- Form for adding a new book -->
+<form action="/api/books" method="POST" id="add_book">
+    <div class="new_book">
+        <div class="form-group">
+            <label for="name" class="text-light">Book ID</label>
+            <input type="text" name="BookID" value="" placeholder="Enter Book Id">
+        </div>
+        <div class="form-group">
+            <label for="text" class="text-light">Book Name</label>
+            <input type="text" name="BookName" value="" placeholder="Enter Book Name">
+        </div>
+        <div class="form-group">
+            <label for="text" class="text-light">Author Name</label>
+            <input type="text" name="AuthorName" value="" placeholder="Enter Author Name">
+        </div>
+        <div class="form-group">
+            <label for="text" class="text-light">Book Price</label>
+            <input type="number" name="BookPrice" value="" placeholder="Enter Book Price">
+        </div>
+        <div class="form-group">
+            <label for="text" class="text-light">Published Date</label>
+            <input type="date" name="PublishedDate" value="">
+        </div>
+
+        <!-- Radio buttons for status selection -->
+        <div class="form-group">
+            <label for="IsAvailable" class="text-light">Status</label>
+            <div class="radio inline">
+                <input type="radio" id="radio-1" name="IsAvailable" value="Active" >
+                <label for="radio-1" class="radio-label">Active</label>
+            </div>
+            <div class="radio inline">
+                <input type="radio" id="radio-2" name="IsAvailable" value="Inactive" >
+                <label for="radio-2" class="radio-label">Inactive</label>
+            </div>
+        </div>
+
+        <!-- Button to submit the form for adding a new book -->
+        <div class="form-group">
+            <button type="submit" class="btn text-dark update">Save</button>
+        </div>
+    </div>
+</form>
+
+<!-- JavaScript to handle form submission and redirection -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const addForm = document.getElementById('add_book');
+
+        addForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const formData = new FormData(addForm);
+
+            // Make a POST request to add the new book
+            fetch(addForm.action, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(Object.fromEntries(formData))
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                // Handle the response as needed
+                if (data.message === "Book created successfully") {
+                    // Redirect to the homepage after successful addition
+                    window.location.href = "/";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
